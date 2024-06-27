@@ -47,7 +47,7 @@ function CommonCard({price, title, name,location, date,imageUrl}) {
         </Typography>
         <Box sx={{display:'flex', flexDirection:'row',justifyContent:"space-between"}}>
         <Typography className="responsive_fontsize14" sx={{color:'primary.main'}}variant="body2" color="text.secondary" >
-         posted by: {name}
+         {name}
         </Typography>
         <Typography className="responsive_fontsize14" sx={{color:'primary.main'}} variant="body2" color="text.secondary">
          {date}
