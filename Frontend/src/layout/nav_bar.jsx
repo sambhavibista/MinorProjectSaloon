@@ -16,9 +16,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import CancelIcon from '@mui/icons-material/Cancel';
 
 // Ensure correct image import path
-import logo from "../assets/images/SELOGO 1.png"
-// const images = require("../assets/images/SELCOGO 1.png").default;
-
+import logo from "../assets/images/SELOGO 1.png";
 
 const navItems = [
   'Home',
@@ -29,11 +27,18 @@ const navItems = [
   'Contact Us',
 ];
 
-function NavBar() {
+function NavBar({ refs }) {
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
 
   function toggleMobileDrawer() {
     setIsMobileDrawerOpen(!isMobileDrawerOpen);
+  }
+
+  function handleNavItemClick(item) {
+    const sectionRef = refs[item];
+    if (sectionRef && sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   const renderLogo = (
@@ -43,7 +48,13 @@ function NavBar() {
   const renderItems = (
     <Box sx={{ display: 'flex', gap: '30px' }}>
       {navItems.map((item, index) => (
-        <Typography key={index} variant="h6" color="textPrimary">
+        <Typography
+          key={index}
+          variant="h6"
+          color="textPrimary"
+          onClick={() => handleNavItemClick(item)}
+          style={{ cursor: 'pointer' }}
+        >
           {item}
         </Typography>
       ))}

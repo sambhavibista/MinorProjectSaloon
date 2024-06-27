@@ -1,0 +1,43 @@
+.responsive_fontsize18 li{
+    list-style: none;
+    display:flex;
+    padding-top: 10px;
+    color: #993838;
+ }
+ .responsive_fontsize18{
+     padding-top: 10px;
+     color: #993838;
+ }
+ .itemTitle{ 
+    
+     display: flex;
+ }
+ .itemTitle{
+     position: relative;
+     
+ }
+ .itemTitle::after{
+     content: '';
+     width:0;
+     height: 3px;
+     background:#e26f6f;
+     position: absolute;
+     left: 0;
+     bottom:-6px;
+ }
+ .map{
+     margin:5px 0px 20px 0px
+ }
+ .itemTitle:hover::after{
+     width: 50%;
+     transition: 2s ease;
+ }
+ .responsive_fontsize18 a{
+     text-decoration: none;
+     color:#000000;
+ }
+ 
+ 
+     
+ 
+ 
