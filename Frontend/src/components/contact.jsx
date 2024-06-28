@@ -12,10 +12,10 @@ import CallIcon from '@mui/icons-material/Call';
 import Divider from '@mui/material/Divider';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
-function Contact() {
+function Contact({contactRef}) {
   return (
     <>
-      <Box sx={{
+      <Box ref={contactRef} sx={{
         display: { xs: 'flex', md: 'flex' },
         flexDirection: { xs: 'column', md: 'row' },
         justifyContent: 'space-evenly',
@@ -35,7 +35,7 @@ function Contact() {
             <a href="#"><ListItem>Services</ListItem></a>
             <a href="#"><ListItem>Appointment</ListItem></a>
             <a href="#"><ListItem>Shops</ListItem></a>
-            <a href="#"><ListItem>Contact Us</ListItem></a>
+            <a href="#"><ListItem>ContactUs</ListItem></a>
           </ul>
           <Box sx={{ display: { xs: 'block', md: 'none' } }}>
             <IconButton sx={{ backgroundColor: "white", boxShadow: " 0px 4px 4px 0px #292C6A", margin: 1 }}>

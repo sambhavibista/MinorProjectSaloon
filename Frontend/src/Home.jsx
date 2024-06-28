@@ -15,7 +15,7 @@ function Home() {
 
   const refs = {
     Shops: shopRef,
-    'Contact Us': contactRef,
+    ContactUs: contactRef,
   }
   return (
     <>
@@ -26,7 +26,7 @@ function Home() {
     <ServicesSection />
     <AppointmentSection />
     <ShopSection shopRef={shopRef}/>
-    <Contact ref={contactRef}/>
+    <section ref={contactRef}><Contact/></section>
     <Footer />
     </>
   )

@@ -24,7 +24,7 @@ const navItems = [
   'Services',
   'Appointment',
   'Shops',
-  'Contact Us',
+  'ContactUs',
 ];
 
 function NavBar({ refs }) {
