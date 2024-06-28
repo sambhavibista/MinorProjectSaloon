@@ -4,7 +4,7 @@ import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import "../theme";
 
-function AppointmentSection() {
+function AppointmentSection({appointmentRef}) {
   const [appointmentDate, setAppointmentDate] = useState(null);
   const [service, setService] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -27,7 +27,7 @@ function AppointmentSection() {
   };
 
   return (
-    <Box sx={{ padding: '50px', backgroundColor: '#f0e5e5', textAlign: 'center' }}>
+    <Box ref= {appointmentRef} sx={{ padding: '50px', backgroundColor: '#f0e5e5', textAlign: 'center' }}>
       <Typography variant="h4" sx={{ fontWeight: '600', marginBottom: '20px', color: "#ff5757" }}>Book an Appointment</Typography>
       <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '600px', margin: '0 auto' }} onSubmit={handleSubmit}>
         <TextField label="Full Name" variant="outlined" fullWidth required />
@@ -53,6 +53,7 @@ function AppointmentSection() {
             label="mm/dd/yyyy"
             value={appointmentDate}
             onChange={handleDateChange}
+            minDate={new Date()} //set minimum  date to today
             renderInput={(params) => <TextField {...params} fullWidth required />}
           />
         </LocalizationProvider>

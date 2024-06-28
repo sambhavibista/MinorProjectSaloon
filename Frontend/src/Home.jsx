@@ -10,6 +10,7 @@ import ShopSection from './components/shop_section'
 import Contact from './components/contact'
 
 function Home() {
+  const  appointmentRef = useRef(null);
   const shopRef = useRef(null);
   const contactRef = useRef(null);
 
@@ -24,7 +25,7 @@ function Home() {
     <FirstSectionLanding />
     <AboutSection />
     <ServicesSection />
-    <AppointmentSection />
+    <section appointmentRef = {appointmentRef}><AppointmentSection/></section>
     <ShopSection shopRef={shopRef}/>
     <section ref={contactRef}><Contact/></section>
     <Footer />
