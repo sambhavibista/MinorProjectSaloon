@@ -73,7 +73,7 @@ function Signup() {
           </Box>
           <Button type='submit' variant="contained" color="success" fullWidth>Sign Up</Button>
           <Typography variant="body2" sx={{ mt: 2 }}>By signing up, you agree to our terms and conditions.</Typography>
-          <Button
+          {/* <Button
       component={Link}
       to="/signup"
       variant="contained"
@@ -88,7 +88,7 @@ function Signup() {
       }}
     >
       Create account
-    </Button>
+    </Button> */}
         </form>
       </Container>
     </Box>

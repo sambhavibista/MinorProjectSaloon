@@ -1,9 +1,16 @@
 import React from "react";
 import "../global.css";
 import { Box, Typography } from "@mui/material";
-import ShopsList from '../components/shopSection/shop_section_card_services';
+import ShopService from './shopSection/shop_section_card_services';
 
-function ShopSection({ shopRef }) {
+function ShopSection({ shopRef, onCardClick }) {
+  console.log("onCardClick in ShopSection: ", onCardClick); 
+
+  const handleCardClick = (item) => {
+    console.log("Clicked on card with item:", item);
+    onCardClick(item); // Trigger the prop function
+  };
+
   return (
     <Box ref={shopRef} sx={{ marginTop: "20px", paddingBottom: "40px" }}>
       <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", marginBottom: '1rem', marginTop: '30px' }}>
@@ -21,7 +28,7 @@ function ShopSection({ shopRef }) {
         </Typography>
       </Box>
       <Box sx={{ display: "flex", width: "100%", flexDirection: "row" }}>
-        <ShopsList />
+        <ShopService onCardClick={handleCardClick} />
       </Box>
     </Box>
   );
