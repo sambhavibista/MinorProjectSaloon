@@ -25,11 +25,12 @@ function Home() {
     <NavBar refs={refs} />
     {/* <Outlet /> */}
     <FirstSectionLanding />
-    <AboutSection />
-    <ServicesSection />
-    <SalonBookingApp shopRef={shopRef}/>
-    <section ref = {appointmentRef}><AppointmentSection/></section>
-    {/* <ShopSection shopRef={shopRef}/> */}
+    {/* <AboutSection />
+    <ServicesSection /> */}
+    {/* <SalonBookingApp shopRef={shopRef}/> */}
+    {/* <ServicesSection /> */}
+    <ShopSection shopRef={shopRef}/>
+    {/* <section ref = {appointmentRef}><AppointmentSection/></section> */}
     <section ref={contactRef}><Contact/></section>
     <Footer />
     </>

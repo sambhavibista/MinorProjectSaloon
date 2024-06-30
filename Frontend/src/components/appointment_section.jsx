@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Box, TextField, Button, Typography, MenuItem, Select, FormControl, InputLabel, Snackbar, Alert } from '@mui/material';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import "../theme";
 
-function AppointmentSection({ appointmentRef, selectedShop }) {
+function AppointmentSection({ selectedShop }) {
   const [appointmentDate, setAppointmentDate] = useState(null);
   const [service, setService] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -27,7 +26,7 @@ function AppointmentSection({ appointmentRef, selectedShop }) {
   };
 
   return (
-    <Box ref={appointmentRef} sx={{ padding: '50px', backgroundColor: '#f0e5e5', textAlign: 'center' }}>
+    <Box sx={{ padding: '50px', backgroundColor: '#f0e5e5', textAlign: 'center' }}>
       <Typography variant="h4" sx={{ fontWeight: '600', marginBottom: '20px', color: "#ff5757" }}>Book an Appointment</Typography>
       {selectedShop && (
         <Typography variant="h6" sx={{ marginBottom: '20px' }}>
@@ -58,7 +57,7 @@ function AppointmentSection({ appointmentRef, selectedShop }) {
             label="mm/dd/yyyy"
             value={appointmentDate}
             onChange={handleDateChange}
-            minDate={new Date()} //set minimum  date to today
+            minDate={new Date()} // Set minimum date to today
             renderInput={(params) => <TextField {...params} fullWidth required />}
           />
         </LocalizationProvider>
@@ -77,7 +76,7 @@ function AppointmentSection({ appointmentRef, selectedShop }) {
         open={openSnackbar}
         autoHideDuration={6000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }} // Center the Snackbar message
+        anchorOrigin={{ vertical: 'center', horizontal: 'center' }} // Center the Snackbar message
       >
         <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
           Congratulations! Your appointment has been booked. Please check your mail for your message and present it on the counter.

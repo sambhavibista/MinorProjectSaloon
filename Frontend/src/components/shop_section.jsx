@@ -2,13 +2,15 @@ import React from "react";
 import "../global.css";
 import { Box, Typography } from "@mui/material";
 import ShopService from './shopSection/shop_section_card_services';
+import { useNavigate } from 'react-router-dom';
 
-function ShopSection({ shopRef, onCardClick }) {
-  console.log("onCardClick in ShopSection: ", onCardClick); 
+function ShopSection({ shopRef }) {
+
+
+  const navigate = useNavigate();
 
   const handleCardClick = (item) => {
-    console.log("Clicked on card with item:", item);
-    onCardClick(item); // Trigger the prop function
+    navigate('/shop', { state: { selectedShop: item } });
   };
 
   return (
@@ -32,6 +34,7 @@ function ShopSection({ shopRef, onCardClick }) {
       </Box>
     </Box>
   );
+
 }
 
 export default ShopSection;
