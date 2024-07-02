@@ -1,0 +1,52 @@
+.property-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+  
+  .property-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .property-count {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .property-title {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+  }
+  
+  .view-more {
+    display: flex;
+    align-items: center;
+  }
+  
+  .view-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+  }
+  
+  .view-text {
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .property-card.blue {
+    border-left: 4px solid #007bff;
+  }
+  
+  .property-card.orange {
+    border-left: 4px solid #fdaf17;
+  }
+  

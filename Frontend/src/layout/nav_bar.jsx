@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 // ICONS IMPORT
 import MenuIcon from '@mui/icons-material/Menu';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -19,12 +20,12 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import logo from "../assets/images/SELOGO 1.png";
 
 const navItems = [
-  'Home',
-  'About',
-  'Services',
-  'Appointment',
-  'Shops',
-  'ContactUs',
+  { label: 'Home', path: '/home' },
+  { label: 'About' , path:'/home'},
+  { label: 'Services', path: '/shop' }, // Update path for Services
+  { label: 'Appointment', path: '/shop' }, // Update path for Appointment
+  { label: 'Shops'},
+  { label: 'ContactUs' },
 ];
 
 function NavBar({ refs }) {
@@ -52,10 +53,12 @@ function NavBar({ refs }) {
           key={index}
           variant="h6"
           color="textPrimary"
-          onClick={() => handleNavItemClick(item)}
-          style={{ cursor: 'pointer' }}
+          component={Link}
+          to={item.path}
+          onClick={() => handleNavItemClick(item.label)}
+          style={{ cursor: 'pointer', textDecoration: 'none', color: 'black' }}
         >
-          {item}
+          {item.label}
         </Typography>
       ))}
     </Box>

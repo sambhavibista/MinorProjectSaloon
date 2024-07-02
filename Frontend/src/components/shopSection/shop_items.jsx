@@ -1,4 +1,4 @@
-export default [
+const shop_items = [
     {
         id: 1,
         imageUrl:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Uk_hair_salon_shop_front.jpg/2560px-Uk_hair_salon_shop_front.jpg',
@@ -57,3 +57,4 @@ export default [
     },
 
 ] 
+export default shop_items;

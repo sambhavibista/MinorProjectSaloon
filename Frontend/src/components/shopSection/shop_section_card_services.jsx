@@ -51,9 +51,10 @@ function ShopService({ onCardClick }) {
     ]
   };
   const handleCardClick = (item) => {
-    console.log("Clicked on card with item:", item);
-    onCardClick(item); // Trigger the prop function
-  };
+    const { name, location } = item; // Destructure only name and location from item
+    console.log("Clicked on card with name:", name, "and location:", location);
+    onCardClick({ name, location }); // Pass only name and location to the prop function
+};
   
   return (
     <div className="center__carousel" style={{ display: "flex", flexDirection: "column", width: "100%" }}>
@@ -63,10 +64,8 @@ function ShopService({ onCardClick }) {
             <CommonCard 
               imageUrl={item.imageUrl}
               location={item.location}
-              price={item.price}
-              title={item.title}
               name={item.name}
-              date={item.date}
+        
             />
           </div>
         ))}
