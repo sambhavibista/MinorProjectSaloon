@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Validation from './SignUpValidation';
 import axios from 'axios';
 import { Box, TextField, Button, Typography, Container, Paper } from '@mui/material';
@@ -12,6 +12,7 @@ function Signup() {
   });
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState('');
 
   const handleInput = (event) => {
     setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
@@ -24,7 +25,11 @@ function Signup() {
     if (errors.name === "" && errors.email === "" && errors.password === "") {
       axios.post('http://localhost:8081/signup', values)
         .then(res => {
-          navigate('/');
+          if (res.data === "Email already exists") {
+            setServerError("Email already exists. Please use a different email.");
+          } else {
+            navigate('/');
+          }
         })
         .catch(err => console.log(err));
     }
@@ -71,28 +76,13 @@ function Signup() {
             />
             {errors.password && <span className='text-danger'>{errors.password}</span>}
           </Box>
+          {serverError && <Typography variant="body2" color="error">{serverError}</Typography>}
           <Button type='submit' variant="contained" color="success" fullWidth>Sign Up</Button>
           <Typography variant="body2" sx={{ mt: 2 }}>By signing up, you agree to our terms and conditions.</Typography>
-          {/* <Button
-      component={Link}
-      to="/signup"
-      variant="contained"
-      fullWidth
-      sx={{
-        bgcolor: 'lightgray', // Adjust background color as needed
-        borderRadius: 0, // Set border radius to 0 for sharp corners
-        textDecoration: 'none', // Remove text decoration
-        '&:hover': {
-          bgcolor: 'lightgray', // Adjust hover background color if needed
-        },
-      }}
-    >
-      Create account
-    </Button> */}
         </form>
       </Container>
     </Box>
-  )
+  );
 }
 
 export default Signup;

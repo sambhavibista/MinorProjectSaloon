@@ -1,14 +1,14 @@
 import React, {useRef} from 'react'
-import { Outlet, Route ,Routes} from 'react-router-dom'
+// import { Outlet, Route ,Routes} from 'react-router-dom'
 import NavBar from './layout/nav_bar'
 import Footer from './layout/footer'
 import FirstSectionLanding from './components/first_section_landing'
-import AboutSection from './components/about_section'
-import ServicesSection from './components/services_section'
-import AppointmentSection from './components/appointment_section'
+// import AboutSection from './components/about_section'
+// import ServicesSection from './components/services_section'
+// import AppointmentSection from './components/appointment_section'
 import ShopSection from './components/shop_section'
 import Contact from './components/contact'
-import SalonBookingApp from './components/parent_component'
+// import SalonBookingApp from './components/parent_component'
 
 function Home() {
   const  appointmentRef = useRef(null);

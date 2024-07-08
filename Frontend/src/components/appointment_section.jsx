@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Box, TextField, Button, Typography, MenuItem, Select, FormControl, InputLabel, Snackbar, Alert } from '@mui/material';
 import { LocalizationProvider, DatePicker, TimePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
 
-function AppointmentSection({ selectedShop }) {
+function AppointmentSection({ selectedShop, stylistList }) {
   const [appointmentDate, setAppointmentDate] = useState(null);
-  const [appointmentTime, setAppointmentTime] = useState(null); // State for appointment time
+  const [appointmentTime, setAppointmentTime] = useState(null);
   const [service, setService] = useState('');
+  const [stylistId, setStylistId] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleDateChange = (newValue) => {
@@ -19,37 +20,62 @@ function AppointmentSection({ selectedShop }) {
   };
 
   const handleServiceChange = (event) => {
-    setService(event.target.value);
+    const selectedService = event.target.value;
+    setService(selectedService);
+
+    // Find the first available stylist that specializes in the selected service
+    const availableStylist = stylistList.find(stylist => stylist.service === selectedService && stylist.available);
+
+    // If an available stylist is found, set the stylistId
+    if (availableStylist) {
+      setStylistId(availableStylist.id);
+    } else {
+      // Alert or handle the case where no stylist is available for the selected service
+      alert(`No stylist available for ${selectedService} service at the moment.`);
+      setStylistId('');
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Prepare data object to send to backend
+    const selectedStylist = stylistList.find(stylist => stylist.id === stylistId);
+    if (!selectedStylist || !selectedStylist.available) {
+      alert('Please select an available stylist.');
+      return;
+    }
+
     const formData = {
       name: event.target.elements.fullName.value,
       email: event.target.elements.emailAddress.value,
       phone: event.target.elements.phoneNumber.value,
       service,
+      stylist: stylistId,
       date: appointmentDate,
-      time: appointmentTime, // Include time in form data
+      time: appointmentTime,
       shop: selectedShop ? selectedShop.name : '',
       message: event.target.elements.message.value
     };
 
-    // Send data to backend using Axios
-    axios.post('http://localhost:8081/api/book-appointment', formData)
+    axios.post('http://localhost:8081/api', formData)
       .then(response => {
         console.log('Appointment booked successfully:', response.data);
-        setOpenSnackbar(true); // Show success message
+        setOpenSnackbar(true);
       })
       .catch(error => {
         console.error('Error booking appointment:', error);
-        // Handle error state or display error message
+        if (error.response && error.response.status === 409) {
+          alert("Appointment already exists!");
+        } else {
+          alert('An error occurred. Please try again later.');
+        }
       });
   };
 
-  const handleCloseSnackbar = () => {
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
     setOpenSnackbar(false);
   };
 
@@ -61,17 +87,13 @@ function AppointmentSection({ selectedShop }) {
           Booking at: {selectedShop.name}
         </Typography>
       )}
-      <Box component="form" onSubmit={handleSubmit} sx={{ backgroundColor:'#f0e5e5', display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '600px', margin: '0 auto' }}>
+      <Box component="form" onSubmit={handleSubmit} sx={{ backgroundColor: '#f0e5e5', display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '600px', margin: '0 auto' }}>
         <TextField name="fullName" label="Full Name" variant="outlined" fullWidth required />
         <TextField name="emailAddress" label="Email Address" variant="outlined" fullWidth required />
         <TextField name="phoneNumber" label="Phone Number" variant="outlined" fullWidth required />
         <FormControl fullWidth required>
           <InputLabel>Choose Service</InputLabel>
-          <Select
-            value={service}
-            onChange={handleServiceChange}
-            label="Choose Service"
-          >
+          <Select value={service} onChange={handleServiceChange} label="Choose Service">
             <MenuItem value="Hair Coloring">Hair Coloring</MenuItem>
             <MenuItem value="Hair Smoothing">Hair Smoothing</MenuItem>
             <MenuItem value="Hair Cutting">Hair Cutting</MenuItem>
@@ -80,12 +102,26 @@ function AppointmentSection({ selectedShop }) {
             <MenuItem value="Facials">Facials</MenuItem>
           </Select>
         </FormControl>
+        <FormControl fullWidth required>
+          <InputLabel>Choose Stylist</InputLabel>
+          <Select
+            value={stylistId}
+            onChange={(e) => setStylistId(e.target.value)}
+            label="Choose Stylist"
+          >
+            {stylistList.map(stylist => (
+              <MenuItem key={stylist.id} value={stylist.id} disabled={!stylist.available || stylist.service !== service}>
+                {stylist.name} - {stylist.available ? 'Available' : 'Not Available'}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             label="Date"
             value={appointmentDate}
             onChange={handleDateChange}
-            minDate={new Date()} // Set minimum date to today
+            minDate={new Date()}
             renderInput={(params) => <TextField {...params} fullWidth required />}
           />
           <TimePicker
@@ -104,10 +140,10 @@ function AppointmentSection({ selectedShop }) {
         open={openSnackbar}
         autoHideDuration={6000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }} // Center the Snackbar message
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
         <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
-          Congratulations! Your appointment has been booked. Please check your mail for your message and present it on the counter.
+          Congratulations! Your appointment has been booked successfully.
         </Alert>
       </Snackbar>
     </Box>
