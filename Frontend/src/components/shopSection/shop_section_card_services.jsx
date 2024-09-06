@@ -3,9 +3,11 @@ import CommonCard from "./shop_section_card";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ShopListServices from "./shop_items";
+import { useShops } from "../../admin/Context/shopContext"; // Import the shop context
 
 function ShopService({ onCardClick }) {
+  const { shops } = useShops();  // Get the shops from the context
+  
   const settings = {
     dots: true,
     infinite: true,
@@ -50,22 +52,22 @@ function ShopService({ onCardClick }) {
       }
     ]
   };
+
   const handleCardClick = (item) => {
     const { name, location } = item; // Destructure only name and location from item
     console.log("Clicked on card with name:", name, "and location:", location);
     onCardClick({ name, location }); // Pass only name and location to the prop function
-};
-  
+  };
+
   return (
     <div className="center__carousel" style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <Slider {...settings}>
-        {ShopListServices.map((item) => (
+        {shops.map((item) => (
           <div key={item.id} className="top-card-wrapper" onClick={() => handleCardClick(item)}>
             <CommonCard 
-              imageUrl={item.imageUrl}
+              imageUrl={item.image}
               location={item.location}
               name={item.name}
-        
             />
           </div>
         ))}

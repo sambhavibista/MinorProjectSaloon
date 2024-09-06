@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
 // ICONS IMPORT
 import MenuIcon from '@mui/icons-material/Menu';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -30,6 +30,7 @@ const navItems = [
 
 function NavBar({ refs }) {
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+  const navigate = useNavigate();
 
   function toggleMobileDrawer() {
     setIsMobileDrawerOpen(!isMobileDrawerOpen);
@@ -40,6 +41,14 @@ function NavBar({ refs }) {
     if (sectionRef && sectionRef.current) {
       sectionRef.current.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  function handleLogout() {
+    // Clear user session or token
+    localStorage.removeItem('authToken');
+    sessionStorage.removeItem('userSession');
+    // Redirect to login page
+    navigate('/');
   }
 
   const renderLogo = (
@@ -61,6 +70,15 @@ function NavBar({ refs }) {
           {item.label}
         </Typography>
       ))}
+       {/* Add Logout Button
+       <Typography
+        variant="contained"
+        onClick={handleLogout}
+        sx={{ backgroundColor: 'black', color: 'white',borderRadius:"7px",'&:hover': { backgroundColor: '#333' } }}
+      >
+         Logout
+      </Typography> */}
+
     </Box>
   );
 
@@ -112,9 +130,20 @@ function NavBar({ refs }) {
             }}
           >
             {renderItems}
+             {/* Add Logout Button */}
+       <Typography
+        variant="contained"
+        onClick={handleLogout}
+        sx={{ backgroundColor: 'black', color: 'white',borderRadius:"7px",'&:hover': { backgroundColor: '#333' } }}
+      >
+         Logout
+      </Typography> 
           </Box>
+          
 
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
+           
+
             <Divider
               orientation="vertical"
               variant="fullWidth"

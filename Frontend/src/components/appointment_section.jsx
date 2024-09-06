@@ -61,7 +61,11 @@ function AppointmentSection({ selectedShop, stylistList }) {
       .then(response => {
         console.log('Appointment booked successfully:', response.data);
         setOpenSnackbar(true);
-      })
+
+        if (onAppointmentBooked) {
+          onAppointmentBooked(response.data);  // Pass the new appointment data
+        }
+  })
       .catch(error => {
         console.error('Error booking appointment:', error);
         if (error.response && error.response.status === 409) {

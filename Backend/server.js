@@ -80,9 +80,20 @@ app.post('/login', (req, res) => {
 app.post('/api', (req, res) => {
     const { name, email, phone, service, stylist, date, time, shop, message } = req.body;
 
+    // const getStylistNameSql = "SELECT name FROM stylist WHERE id = ?";
+    
+    // db.query(getStylistNameSql, [stylist], (err, result) => {
+    //     if (err) {
+    //         console.error('Error fetching stylist name:', err);
+    //         return res.status(500).json({ error: "Database error" });
+    //     }
+
+    //     const stylistName = result[0].name;
+
     // Check if the appointment already exists
     const checkAppointmentSql = "SELECT * FROM appointments WHERE email = ? AND service = ? AND date = ? AND time = ? AND shop = ?";
     const checkValues = [email, service, date, time, shop];
+
 
     db.query(checkAppointmentSql, checkValues, (err, results) => {
         if (err) {
@@ -137,6 +148,18 @@ app.post('/api', (req, res) => {
                 });
             });
         }
+    });
+});
+
+
+app.get('/api/appointments', (req, res) => {
+    const sql = "SELECT * FROM appointments"; // Fetch all appointments
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error fetching appointments:', err);
+            return res.status(500).json({ error: 'Database error' });
+        }
+        return res.json(results); // Return the list of appointments
     });
 });
 
