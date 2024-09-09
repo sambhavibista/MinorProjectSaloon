@@ -18,8 +18,12 @@ import TotalBookings from './admin/TotalBookings';
 import TotalShops from './admin/TotalShops';
 import AddShop from './admin/AddShop';
 import { ShopProvider } from './admin/Context/shopContext';
+import StylistsList from './admin/StylistList';
+import { StylistProvider } from './admin/Context/stylistContect';
 function App() {
+
   return (
+    <StylistProvider>
     <ShopProvider>
     <LocalizationProvider dateAdapter={AdapterDateFns}>
     <BrowserRouter>
@@ -35,11 +39,13 @@ function App() {
       <Route path='/admin/total-shops' element={<TotalShops/>}></Route>
       <Route path='/add-shop' element={<AddShop/>}></Route>
       <Route path='/edit-shop/:id' element={<AddShop/>}></Route>
+      <Route path="/shop/:id/stylists" element={<StylistsList />} />
      </Routes>
       {/* </BookingsProvider> */}
      </BrowserRouter>
      </LocalizationProvider>
      </ShopProvider>
+     </StylistProvider>
     
     
     

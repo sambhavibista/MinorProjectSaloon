@@ -91,8 +91,8 @@ app.post('/api', (req, res) => {
     //     const stylistName = result[0].name;
 
     // Check if the appointment already exists
-    const checkAppointmentSql = "SELECT * FROM appointments WHERE email = ? AND service = ? AND date = ? AND time = ? AND shop = ?";
-    const checkValues = [email, service, date, time, shop];
+    const checkAppointmentSql = "SELECT * FROM appointments WHERE email = ? AND service = ? AND stylist = ? AND date = ? AND time = ? AND shop = ?";
+    const checkValues = [email, service, stylist, date, time, shop];
 
 
     db.query(checkAppointmentSql, checkValues, (err, results) => {

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useShops } from './Context/shopContext';
 
+
 function TotalShops() {
   const { shops, deleteShop } = useShops();
   const [search, setSearch] = useState('');
@@ -18,6 +19,11 @@ function TotalShops() {
   const handleEdit = (shop) => {
     navigate(`/edit-shop/${shop.id}`, { state: shop }); // Passing the shop object to the AddShop component
   };
+
+  const handleViewStylists = (shop) => {
+    navigate(`/shop/${shop.id}/stylists`, { state: shop });
+  };
+  
 
   const handleDelete = (id) => {
     deleteShop(id); 
@@ -67,6 +73,7 @@ function TotalShops() {
                   <TableCell>{shop.contact}</TableCell>
                   <TableCell>{shop.status}</TableCell>
                   <TableCell>
+                  <Button variant="contained" onClick={() => handleViewStylists(shop)}>View Stylists</Button>
                     <Button onClick={() => handleEdit(shop)}>Edit</Button>
                     <Button color="error" onClick={() => handleDelete(shop.id)}>Delete</Button>
                   </TableCell>
