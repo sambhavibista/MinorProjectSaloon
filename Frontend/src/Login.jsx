@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {  useNavigate,Link } from 'react-router-dom';
 import Validation from './SignUpValidation';
 import axios from 'axios';
-import { Box, TextField, Button, Typography, Container, Paper } from '@mui/material';
+import { Box, TextField, Button, Typography, Container, Paper,LinearProgress } from '@mui/material';
 import './login.css'
 function Login() {
   const [values, setValues] = useState({
@@ -35,10 +35,10 @@ function Login() {
   }
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'grey', height: '100vh' }}>
+    <Box>
       <Container component={Paper} elevation={3} sx={{ width: "90%", }}>
         <Typography variant="h5">Log In</Typography>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form className='form' onSubmit={(e) => handleSubmit(e)}>
           <Box sx={{ mb: 4 }}>
             <label htmlFor="email"><strong>Email</strong></label>
             <TextField
@@ -84,6 +84,7 @@ function Login() {
     
       Create Account
     </Button>
+    <LinearProgress variant="buffer" value={80} valueBuffer={100} />
         </form>
       </Container>
     </Box>
