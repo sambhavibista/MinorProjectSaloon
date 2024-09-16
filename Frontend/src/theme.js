@@ -1,6 +1,9 @@
 import { ThemeProvider ,createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
+  root:{
+    padding:"10rem",
+  },
   palette: {
     primary: {
       main: "#ff5757", // BLUE COLOR

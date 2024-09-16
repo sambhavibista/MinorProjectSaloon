@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import {  useNavigate,Link } from 'react-router-dom';
 import Validation from './SignUpValidation';
 import axios from 'axios';
-import { Box, TextField, Button, Typography, Container, Paper } from '@mui/material';
-
+import { Box, TextField, Button, Typography, Container, Paper,LinearProgress } from '@mui/material';
+import './login.css'
 function Login() {
   const [values, setValues] = useState({
     name: '',
@@ -35,11 +35,11 @@ function Login() {
   }
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'grey', height: '100vh' }}>
-      <Container component={Paper} elevation={3} sx={{ width: "250px" }}>
+    <Box>
+      <Container component={Paper} elevation={3} sx={{ width: "90%", }}>
         <Typography variant="h5">Log In</Typography>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <Box sx={{ mb: 3 }}>
+        <form className='form' onSubmit={(e) => handleSubmit(e)}>
+          <Box sx={{ mb: 4 }}>
             <label htmlFor="email"><strong>Email</strong></label>
             <TextField
               type='email'
@@ -63,24 +63,28 @@ function Login() {
             />
             {errors.password && <span className='text-danger'>{errors.password}</span>}
           </Box>
-          <Button type='submit' variant="contained" color="success" fullWidth>Log In</Button>
+          <Button id='login' type='submit' variant="contained" color="success" fullWidth>Log In</Button>
           <Typography variant="body2" sx={{ mt: 2 }}>By signing up, you agree to our terms and conditions.</Typography>
-          <Button
+          <Button id='create'
       component={Link}
       to="/signup"
       variant="contained"
       fullWidth
       sx={{
-        bgcolor: 'lightgray', // Adjust background color as needed
-        borderRadius: 0, // Set border radius to 0 for sharp corners
+        margin:'10px',
+        padding:'10px',
+        bgcolor: 'lightblue', // Adjust background color as needed
+        borderRadius: 2, // Set border radius to 0 for sharp corners
         textDecoration: 'none', // Remove text decoration
         '&:hover': {
           bgcolor: 'lightgray', // Adjust hover background color if needed
         },
       }}
     >
-      Create account
+    
+      Create Account
     </Button>
+    <LinearProgress variant="buffer" value={80} valueBuffer={100} />
         </form>
       </Container>
     </Box>
