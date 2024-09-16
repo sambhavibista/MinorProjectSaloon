@@ -4,7 +4,7 @@ import { LocalizationProvider, DatePicker, TimePicker } from '@mui/x-date-picker
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import axios from 'axios';
 
-function AppointmentSection({ selectedShop, stylistList }) {
+function AppointmentSection({ selectedShop, stylistList = [] }) { // Default to empty array
   const [appointmentDate, setAppointmentDate] = useState(null);
   const [appointmentTime, setAppointmentTime] = useState(null);
   const [service, setService] = useState('');
@@ -65,7 +65,7 @@ function AppointmentSection({ selectedShop, stylistList }) {
         if (onAppointmentBooked) {
           onAppointmentBooked(response.data);  // Pass the new appointment data
         }
-  })
+      })
       .catch(error => {
         console.error('Error booking appointment:', error);
         if (error.response && error.response.status === 409) {
