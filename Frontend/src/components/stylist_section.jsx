@@ -17,7 +17,7 @@ const ServiceCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const StylistSection = ({ selectedShop, stylistList, handleStylistChange, selectedStylist }) => {
+const StylistSection = ({ selectedShop, stylistList = [], handleStylistChange, selectedStylist }) => {
   const [showAll, setShowAll] = useState(false);
   const initialDisplayCount = 6; // Number of stylists initially displayed
   const [displayCount, setDisplayCount] = useState(initialDisplayCount);
