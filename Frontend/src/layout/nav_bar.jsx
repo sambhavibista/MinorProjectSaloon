@@ -57,7 +57,7 @@ function NavBar({ refs }) {
   );
 
   const renderItems = (
-    <Box className:logout sx={{ display: 'flex', gap: '20px', background:'', margin:'3px',padding:'6px'}}>
+    <Box className:logout sx={{ display: 'flex', gap: '20px', background:'#fd5c63', margin:'3px',padding:'6px'}}>
       {navItems.map((item, index) => (
         <Typography
           key={index}
@@ -132,9 +132,10 @@ function NavBar({ refs }) {
           >
             {renderItems}
              {/* Add Logout Button */}
-       <Typography className='logout'
+       <Typography
         variant="contained"
         onClick={handleLogout}
+        sx={{ backgroundColor: 'black', color: 'white',borderRadius:"7px",'&:hover': { backgroundColor: '#333' } }}
       >
          Logout
       </Typography> 
