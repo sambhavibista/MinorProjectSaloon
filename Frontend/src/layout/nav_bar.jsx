@@ -5,6 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Drawer from '@mui/material/Drawer';
+import './navbar.css';
 import Divider from '@mui/material/Divider';
 import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
 // ICONS IMPORT
@@ -56,7 +57,7 @@ function NavBar({ refs }) {
   );
 
   const renderItems = (
-    <Box sx={{ display: 'flex', gap: '30px' }}>
+    <Box className:logout sx={{ display: 'flex', gap: '20px', background:'#fd5c63', margin:'3px',padding:'6px'}}>
       {navItems.map((item, index) => (
         <Typography
           key={index}
@@ -92,14 +93,14 @@ function NavBar({ refs }) {
             justifyContent: 'space-between',
             width: '100%',
             alignItems: 'center',
-            backgroundColor: 'white',
+            backgroundColor: '#fd5c63',
           }}
         >
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>{renderLogo}</Box>
 
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
-              size="large"
+              size="medium"
               aria-label="menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
