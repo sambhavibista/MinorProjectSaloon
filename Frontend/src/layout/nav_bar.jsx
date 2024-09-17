@@ -19,6 +19,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 
 // Ensure correct image import path
 import logo from "../assets/images/SELOGO 1.png";
+import { colors, rgbToHex } from '@mui/material';
 
 const navItems = [
   { label: 'Home', path: '/home' },
@@ -26,7 +27,9 @@ const navItems = [
   { label: 'Services', path: '/shop' }, // Update path for Services
   { label: 'Appointment', path: '/shop' }, // Update path for Appointment
   { label: 'Shops'},
-  { label: 'ContactUs' },
+  { label: 'Contact' },
+ 
+  
 ];
 
 function NavBar({ refs }) {
@@ -67,18 +70,12 @@ function NavBar({ refs }) {
           to={item.path}
           onClick={() => handleNavItemClick(item.label)}
           style={{ cursor: 'pointer', textDecoration: 'none', color: 'black' }}
-        >
+          className="navbar-item"
+       >
           {item.label}
         </Typography>
       ))}
-       {/* Add Logout Button
-       <Typography
-        variant="contained"
-        onClick={handleLogout}
-        sx={{ backgroundColor: 'black', color: 'white',borderRadius:"7px",'&:hover': { backgroundColor: '#333' } }}
-      >
-         Logout
-      </Typography> */}
+       
 
     </Box>
   );
@@ -87,28 +84,31 @@ function NavBar({ refs }) {
     <AppBar position="static" sx={{ backgroundColor: "white" }}>
       <Toolbar disableGutters className="apply_maxwidth" sx={{ width: '100%', py: 0 }}>
         {/* MOBILE VIEW */}
-        <Box
-          sx={{
+        <Box sx={{
             display: { xs: 'flex', md: 'none' },
             justifyContent: 'space-between',
             width: '100%',
             alignItems: 'center',
-            backgroundColor: '#fd5c63',
+            backgroundColor:'#FAF9F6',
           }}
         >
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>{renderLogo}</Box>
 
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
-              size="medium"
+              size="small"
               aria-label="menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={toggleMobileDrawer}
-              color="inherit"
+              color="#fd5c63"
+
             >
+              
               <MenuIcon />
+              
             </IconButton>
+            
           </Box>
         </Box>
         {/* END MOBILE VIEW */}
@@ -117,7 +117,7 @@ function NavBar({ refs }) {
         <Box
           sx={{
             justifyContent: 'space-between',
-            backgroundColor: 'white',
+            backgroundColor: '#FAF9F6',
             width: '100%',
             alignItems: 'center',
             display: { xs: 'none', md: 'flex' },
@@ -148,7 +148,7 @@ function NavBar({ refs }) {
               orientation="vertical"
               variant="fullWidth"
               flexItem
-              sx={{ borderLeftWidth: 0.5, backgroundColor: 'black' }}
+              sx={{ margin:'5px', borderLeftWidth: 0.5, backgroundColor: 'black' }}
             />
             <Box sx={{ mx: '0.2rem', alignItems: 'center', color: "black" }}>
               <FacebookIcon />
@@ -161,12 +161,13 @@ function NavBar({ refs }) {
               orientation="vertical"
               variant="fullWidth"
               flexItem
-              sx={{ borderLeftWidth: 0.5, backgroundColor: 'black' }}
+              sx={{ margin:'5px', borderLeftWidth: 0.5, backgroundColor: 'black' }}
             />
           </Box>
         </Box>
         {/* END DESKTOP VIEW */}
       </Toolbar>
+      {/* sam ko drawer 
       <Drawer
         anchor="top"
         open={isMobileDrawerOpen}
@@ -191,7 +192,86 @@ function NavBar({ refs }) {
         >
           {renderItems}
         </Box>
+      </Drawer> */}
+
+<Drawer
+        anchor="right" // Opens from the right
+        open={isMobileDrawerOpen}
+        onClose={() => setIsMobileDrawerOpen(false)}
+      >
+<Box className="logo-container">
+<Box className="close-button">
+          {/* Close button */}
+          <IconButton onClick={() => setIsMobileDrawerOpen(false)} aria-label="close drawer">
+            <CancelIcon />
+          </IconButton>
+        </Box>
+        </Box>
+        {/* Drawer content */}
+        <Box
+  sx={{
+    display: 'flex',
+    flexDirection: 'column', // Column direction (vertical)
+    alignItems: 'flex-start', // Align items to the start (left)
+    padding: '0px', // Padding around the content
+    backgroundColor: '#FAF9F6',
+    height: '100%', // Full height of the drawer
+    width: '100%', // Full width of the drawer
+  }}
+>
+
+          {/* Menu Items */}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column', // Column direction (vertical)
+              alignItems: 'flex-end', // Align items to the right
+              width: '97%', // Full width to ensure items are responsive
+            }}
+          >
+            {navItems.map((item, index) => (
+              <Typography
+                key={index}
+                variant="h6"
+                color="textPrimary"
+                component={Link}
+                to={item.path}
+                onClick={() => handleNavItemClick(item.label)}
+                sx={{
+                  cursor: 'pointer',
+                  textDecoration: 'none',
+                  color: 'black',
+                  padding: '1rem', // Padding around each item for better spacing
+                  fontSize: '1rem', // Font size for readability
+                  width: '100%', // Full width to ensure easy tapping
+                  textAlign: 'right', // Align text to the right
+                  borderBottom: '1px solid #ddd', // Optional: Separator between items
+                }}
+              >
+                {item.label}
+              </Typography>
+            ))}
+          </Box>
+          {/* Add Logout Button */}
+  <Typography
+    variant="contained"
+    onClick={handleLogout}
+    sx={{
+      cursor: 'pointer',
+      textDecoration: 'none',
+      color: '#fff',
+      backgroundColor: '#fd5c63',
+      padding: '0.5rem 1rem',
+      borderRadius: '8px',
+      alignSelf: 'flex-end', // Align to the start (left)
+      margin: '1rem', // Space below the button
+    }}
+  >
+    Logout
+  </Typography>
+        </Box>
       </Drawer>
+
     </AppBar>
   );
 }

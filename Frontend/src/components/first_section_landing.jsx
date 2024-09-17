@@ -29,6 +29,7 @@ function FirstSectionLanding() {
           variant="h3"
           className='responsive_fontsize64' 
           sx={{
+            
             fontFamily: "Roboto Slab",
             fontWeight: 'bold',
             color: "#ff5757",
@@ -40,9 +41,9 @@ function FirstSectionLanding() {
             text.map((el, i) => (
               <motion.span
               initial={{ opacity: 0, color: "#ffffff" }} // Initial color set to white
-              animate={{ opacity: 1, color: "#ff5757" }} // Animate color change
+              animate={{ opacity: 1, color: "#fd5c63" }} // Animate color change
               transition={{
-                duration: 0.5,
+                duration: 0.3,
                 delay: i/10,
               }}
               key={i}
@@ -55,6 +56,7 @@ function FirstSectionLanding() {
           variant="contained"
           sx={{
             backgroundColor: "#ff5757",
+            
             opacity: "0.8",
             color: "white",
             "&:hover": {
