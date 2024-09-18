@@ -270,7 +270,7 @@ function NavBar({ refs }) {
   >
     Logout
   </Typography>
-        </Box>
+        </Box>g
       </Drawer>
 
     </AppBar>
