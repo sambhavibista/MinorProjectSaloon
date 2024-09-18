@@ -1,0 +1,19 @@
+
+
+
+.main_container{
+    display: inline-block;
+    align-items: center;
+    border: 10px solid #ff463f;
+    
+
+  
+    
+}
+
+
+.logo{
+    width: 'auto';
+    height: '30px';
+
+}

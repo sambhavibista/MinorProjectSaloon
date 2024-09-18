@@ -39,7 +39,7 @@ function Login() {
   return (
     <Box className='main_container'>
   
-      <Container className='form_container' component={Paper} elevation={3} >
+      <Container className='form' component={Paper} elevation={3} >
       <img className='logo' src={logo} alt="Style Easy" style={{  }} />
       <Box>  
       <Typography sx={{ display:"flex",justifyContent:"space-around"}} variant="h5">Log In</Typography>
