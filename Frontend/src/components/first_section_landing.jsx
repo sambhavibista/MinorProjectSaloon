@@ -23,6 +23,7 @@ function FirstSectionLanding() {
   return (
     <Box>
     <Box className="HeroSection" style={{backgroundPositionY}}>
+      
     <Box className="header-content">
       <Box className="text-container" sx={{textAlign:"left", maxWidth:"600px"}}>
         <Typography
@@ -32,7 +33,7 @@ function FirstSectionLanding() {
             
             fontFamily: "Roboto Slab",
             fontWeight: 'bold',
-            color: "#ff5757",
+            color: "#ff575",
             textAlign:"left",
             marginTop:'0px'
           }}
@@ -41,7 +42,7 @@ function FirstSectionLanding() {
             text.map((el, i) => (
               <motion.span
               initial={{ opacity: 0, color: "#ffffff" }} // Initial color set to white
-              animate={{ opacity: 1, color: "#fd5c63" }} // Animate color change
+              animate={{ opacity: 2, color: "#D24C52" }} // Animate color change
               transition={{
                 duration: 0.3,
                 delay: i/10,

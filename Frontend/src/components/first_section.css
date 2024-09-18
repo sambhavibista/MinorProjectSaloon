@@ -3,8 +3,12 @@
     height: 100vh;
     position: relative;
     max-width: 100%;
+    /* background-image: url('../assets/images/home.gif'); 
+    opacity: 85%; */
+        
     background-image: url('../assets/images/tools.jpg');
 
+    
     background-repeat:repeat;
     background-size: cover;
     background-position: center;
@@ -57,7 +61,7 @@
 }
 
  .responsive_fontsize64{
-    text-shadow: -1px 0 rgb(171, 5, 5), 0 1px rgb(207, 121, 121), 1px 0 rgb(252, 252, 252), 0 -1px rgb(184, 184, 184);
+    text-shadow: -2px 1 rgb(242, 242, 242), 0 1px rgb(203, 57, 57), 1px 0 rgb(252, 252, 252), 0 -1px rgb(184, 184, 184);
     
     /* border: 2px solid #ff4742; */
     /* padding: 10px;
