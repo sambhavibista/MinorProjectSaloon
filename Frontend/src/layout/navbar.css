@@ -1,3 +1,4 @@
+
 /* General Navbar Styling */
 .navbar {
     padding: 10px 20px;
@@ -111,7 +112,6 @@
 /* Logout Button */
 .logout {
     display: inline-block;
-
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
@@ -168,4 +168,3 @@
         margin-left: auto; /* Align social icons to the right */
     }
 }
-
