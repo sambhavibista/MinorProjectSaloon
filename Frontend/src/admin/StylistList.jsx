@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, IconButton } from '@mui/material';
+import { Box, Typography, Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, IconButton, InputLabel,Select,MenuItem } from '@mui/material';
 import { useLocation, Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete'; // Import the Delete icon
 import { useStylists } from './Context/stylistContect';
@@ -109,14 +109,41 @@ function StylistsList() {
           fullWidth
           margin="normal"
         />
-        <TextField
+
+<InputLabel>Choose Service</InputLabel>
+<Select
+  name="service" // Add the name property so it works with handleInputChange
+  value={newStylist.service}
+  onChange={(event) =>
+    handleInputChange({
+      target: {
+        name: 'service',
+        value: event.target.value,
+      },
+    })
+  }
+  fullWidth
+  margin="normal"
+  label="Choose Service"
+>
+  <MenuItem value="Hair Coloring">Hair Coloring</MenuItem>
+  <MenuItem value="Hair Smoothing">Hair Smoothing</MenuItem>
+  <MenuItem value="Hair Cutting">Hair Cutting</MenuItem>
+  <MenuItem value="Hair Styling">Hair Styling</MenuItem>
+  <MenuItem value="Herbal Massage">Herbal Massage</MenuItem>
+  <MenuItem value="Facials">Facials</MenuItem>
+</Select>
+          
+          {/* <TextField
           label="Service"
           name="service"
           value={newStylist.service}
           onChange={handleInputChange}
           fullWidth
           margin="normal"
-        />
+        /> */}
+
+
         {/* <Button component="label">
           Upload Image
           <input type="file" hidden accept="image/*" onChange={handleImageChange} />
