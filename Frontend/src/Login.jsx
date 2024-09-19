@@ -4,6 +4,8 @@ import Validation from './SignUpValidation';
 import axios from 'axios';
 import { Box, TextField, Button, Typography, Container, Paper, } from '@mui/material';
 import './login.css'
+import logo from "../src/assets/images/SELOGO 1.png";
+
 function Login() {
   const [values, setValues] = useState({
     name: '',
@@ -35,10 +37,13 @@ function Login() {
   }
 
   return (
-    <Box>
-      <Typography variant="h5">Log In</Typography>
-      <Container component={Paper} elevation={3} sx={{ width: "90%", }}>
-        
+    <Box className='main_container'>
+  
+      <Container className='form' component={Paper} elevation={3} >
+      <img className='logo' src={logo} alt="Style Easy" style={{  }} />
+      <Box>  
+      <Typography sx={{ display:"flex",justifyContent:"space-around"}} variant="h5">Log In</Typography>
+
         <form className='form' onSubmit={(e) => handleSubmit(e)}>
           <Box sx={{ mb: 4 }}>
             <label htmlFor="email"><strong>Email</strong></label>
@@ -86,9 +91,11 @@ function Login() {
       Create Account
     </Button>
         </form>
+        </Box>
       </Container>
     </Box>
   )
 }
 
 export default Login;
+
