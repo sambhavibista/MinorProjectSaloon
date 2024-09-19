@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from '@mui/system';
 import { Grid, Card, CardContent, Typography } from '@mui/material';
 
+
 const Root = styled('div')(({ theme }) => ({
   flexGrow: 1,
   padding: theme.spacing(2),
@@ -24,6 +25,7 @@ const services = [
 const ServicesSection = ({ selectedShop }) => {
   return (
     <Root>
+      
       {selectedShop && (
         <Typography variant="h5" component="h2" gutterBottom sx={{
           fontWeight: "bold",

@@ -3,6 +3,7 @@ import "../global.css";
 import { Box, Typography } from "@mui/material";
 import ShopService from './shopSection/shop_section_card_services';
 import { useNavigate } from 'react-router-dom';
+import NavBar from "../layout/nav_bar";
 
 function ShopSection({ shopRef }) {
 
@@ -14,6 +15,8 @@ function ShopSection({ shopRef }) {
   };
 
   return (
+    <>
+    
     <Box ref={shopRef} sx={{ marginTop: "20px", paddingBottom: "40px" }}>
       <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", marginBottom: '1rem', marginTop: '30px' }}>
         <Typography
@@ -33,6 +36,7 @@ function ShopSection({ shopRef }) {
         <ShopService onCardClick={handleCardClick} />
       </Box>
     </Box>
+    </>
   );
 
 }

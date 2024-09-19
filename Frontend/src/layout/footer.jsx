@@ -15,12 +15,10 @@ function FooterComponents() {
         <Typography
             className='responsive_fontsize18'
         >Terms and Conditions</Typography>
+       
         <Typography
              className='responsive_fontsize18'
-        >Copyright @ {new Date().getFullYear}</Typography>
-        <Typography
-             className='responsive_fontsize18'
-        >Developed by @BM</Typography>
+        >Developed by TeamStyleEasy</Typography>
     </Box>
   )
 }

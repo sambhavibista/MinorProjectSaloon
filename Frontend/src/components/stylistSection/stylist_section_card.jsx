@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, Typography, Box } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import NavBar from '../../layout/nav_bar';
 
 function CommonCard({ name, service }) {
   return (
@@ -22,6 +23,7 @@ function CommonCard({ name, service }) {
           {/* </div> */}
           {/* Card Content */}
           <CardContent>
+            
             <Box sx={{ height: "auto", margin: '0px 1px' }}>
               {/* Stylist Name */}
               <Typography sx={{ color: '#ff5757', fontWeight: 'bold' }} variant="h6" component="div">

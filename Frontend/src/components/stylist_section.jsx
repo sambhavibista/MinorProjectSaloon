@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { styled } from '@mui/system';
 import { Grid, Card, CardContent, Typography, Box, Button } from '@mui/material';
+import NavBar from '../layout/nav_bar';
 
 const Root = styled('div')(({ theme }) => ({
   flexGrow: 1,
@@ -39,7 +40,10 @@ const StylistSection = ({ selectedShop, stylistList = [], handleStylistChange, s
   const visibleStylists = showAll ? stylistList : stylistList.slice(0, displayCount);
 
   return (
-    <Root>
+    <>
+    <NavBar/>
+    <Root> 
+       
       {selectedShop && (
         <Typography variant="h5" component="h2" gutterBottom sx={{
           fontWeight: "bold",
@@ -48,7 +52,8 @@ const StylistSection = ({ selectedShop, stylistList = [], handleStylistChange, s
           letterSpacing: "1px",
           color: '#ff5757',
         }}>
-          Stylists Available at: {selectedShop.name}
+          
+          Stylists Available at {selectedShop.name}
         </Typography>
       )}
       <Grid container spacing={3}>
@@ -103,7 +108,9 @@ const StylistSection = ({ selectedShop, stylistList = [], handleStylistChange, s
         </Box>
       )}
     </Root>
+   </>
   );
+  
 };
 
 export default StylistSection;

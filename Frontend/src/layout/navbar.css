@@ -1,11 +1,8 @@
 
 /* General Navbar Styling */
 .navbar {
-    padding: 10px 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000; /* Make sure the navbar stays on top */
+    padding: 0px 0px;
+    
 }
 
 /* Logo Styling */

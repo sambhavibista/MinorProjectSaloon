@@ -24,10 +24,8 @@ import { colors, rgbToHex } from '@mui/material';
 const navItems = [
   { label: 'Home', path: '/home' },
   { label: 'About' , path:'/home'},
-  { label: 'Services', path: '/shop' }, // Update path for Services
-  { label: 'Appointment', path: '/shop' }, // Update path for Appointment
   { label: 'Shops'},
-  { label: 'Contact' },
+  { label: 'Contact'},
  
   
 ];
@@ -81,7 +79,7 @@ function NavBar({ refs }) {
   );
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "white" }}>
+    <AppBar position="sticky" className='navbar'>
       <Toolbar disableGutters className="apply_maxwidth" sx={{ width: '100%', py: 0 }}>
         {/* MOBILE VIEW */}
         <Box sx={{

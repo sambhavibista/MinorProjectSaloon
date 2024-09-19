@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography,Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { useShops } from './Context/shopContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -84,26 +84,40 @@ function AddShop() {
           fullWidth
           margin="normal"
         />
-        <TextField
-          label="Status"
-          name="status"
-          variant="outlined"
-          value={shopDetails.status}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        />
+    <Box sx={{display: 'flex', flexDirection: 'column'}}>
+
+       
+    <FormControl halfWidth margin="normal">
+
+  <InputLabel id="status-label">Status</InputLabel>
+  <Select
+    labelId="status-label"
+    name="status"
+    value={shopDetails.status} // Bound to the "status" in shopDetails
+    onChange={handleChange} // The same handleChange method
+    label="Status" // Important to keep consistent labeling with InputLabel
+  >
+    <MenuItem value="Open">Open</MenuItem>
+    <MenuItem value="Closed">Closed</MenuItem>
+    <MenuItem value="Temporarily Closed">Temporarily Closed</MenuItem>
+    <MenuItem value="Permanently Closed">Permanently Closed</MenuItem>
+
+  </Select>
+</FormControl>
 
         <input
           type="file"
           accept="image/*"
           onChange={handleImageChange}
-          style={{ margin: '20px 0' }}
+          style={{ margin: '20px' }}
         />
+        </Box>
         <Button variant="contained" type="submit">
           {shopToEdit ? 'Update Shop' : 'Add Shop'}
         </Button>
+        
       </form>
+
     </Box>
   );
 }
