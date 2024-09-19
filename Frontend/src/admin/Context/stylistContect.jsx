@@ -1,73 +1,51 @@
-import { useState, useEffect, useContext, createContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
+// Create context
 const StylistContext = createContext();
 
-export const useStylists = () => useContext(StylistContext);
+// Custom hook to use the StylistContext
+export const useStylists = () => {
+  return useContext(StylistContext);
+};
 
 export const StylistProvider = ({ children }) => {
-  const [shops, setShops] = useState([]);
+  const [stylists, setStylists] = useState(() => {
+    // Retrieve from localStorage on component mount
+    const storedStylists = localStorage.getItem('stylists');
+    return storedStylists ? JSON.parse(storedStylists) : [];
+  });
 
-  useEffect(() => {
-    const fetchShops = () => {
-      const storedShops = localStorage.getItem('shops');
-      if (storedShops) {
-        setShops(JSON.parse(storedShops));
-      }
-    };
+  // Function to add a new stylist
+  const addStylist = (stylist) => {
+    setStylists((prevStylists) => {
+      const updatedStylists = [...prevStylists, stylist];
+      localStorage.setItem('stylists', JSON.stringify(updatedStylists)); // Save updated stylists to localStorage
+      return updatedStylists;
+    });
+  };
 
-    fetchShops();
-
-    const intervalId = setInterval(fetchShops, 5000); // Poll every 5 seconds
-
-    return () => clearInterval(intervalId); // Cleanup on unmount
-  }, []);
-
-  const addStylistToShop = (shopId, stylist) => {
-    setShops((prevShops) => {
-      const updatedShops = prevShops.map((shop) =>
-        shop.id === shopId
-          ? { ...shop, stylists: [...shop.stylists, stylist] }
-          : shop
+  // Function to update availability
+  const toggleAvailability = (id) => {
+    setStylists((prevStylists) => {
+      const updatedStylists = prevStylists.map((stylist) =>
+        stylist.id === id ? { ...stylist, available: !stylist.available } : stylist
       );
-      localStorage.setItem('shops', JSON.stringify(updatedShops));
-      return updatedShops;
+      localStorage.setItem('stylists', JSON.stringify(updatedStylists)); // Save updated stylists to localStorage
+      return updatedStylists;
     });
   };
 
-  const toggleAvailability = (shopId, stylistId) => {
-    setShops((prevShops) => {
-      const updatedShops = prevShops.map((shop) => {
-        if (shop.id === shopId) {
-          const updatedStylists = shop.stylists.map((stylist) =>
-            stylist.id === stylistId
-              ? { ...stylist, available: !stylist.available }
-              : stylist
-          );
-          return { ...shop, stylists: updatedStylists };
-        }
-        return shop;
-      });
-      localStorage.setItem('shops', JSON.stringify(updatedShops));
-      return updatedShops;
-    });
-  };
-
-  const removeStylistFromShop = (shopId, stylistId) => {
-    setShops((prevShops) => {
-      const updatedShops = prevShops.map((shop) => {
-        if (shop.id === shopId) {
-          const updatedStylists = shop.stylists.filter((stylist) => stylist.id !== stylistId);
-          return { ...shop, stylists: updatedStylists };
-        }
-        return shop;
-      });
-      localStorage.setItem('shops', JSON.stringify(updatedShops));
-      return updatedShops;
+   // Function to remove a stylist
+   const removeStylist = (id) => {
+    setStylists((prevStylists) => {
+      const updatedStylists = prevStylists.filter((stylist) => stylist.id !== id);
+      localStorage.setItem('stylists', JSON.stringify(updatedStylists)); // Update localStorage after deletion
+      return updatedStylists;
     });
   };
 
   return (
-    <StylistContext.Provider value={{ shops, addStylistToShop, toggleAvailability, removeStylistFromShop }}>
+    <StylistContext.Provider value={{ stylists, addStylist, toggleAvailability, removeStylist }}>
       {children}
     </StylistContext.Provider>
   );

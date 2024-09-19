@@ -3,30 +3,17 @@ import CommonCard from "./stylist_section_card";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useStylists } from "../../admin/Context/stylistContect";
 
-function StylistService({ onCardClick, shopId }) {  // Pass the shopId prop to get the correct stylists for the shop
-  const { shops } = useStylists();
+function StylistService({ onCardClick }) {
   const [stylistList, setStylistList] = useState([]);
 
+  // Retrieve stylists from localStorage when the component mounts
   useEffect(() => {
-    // Fetch stylists for the specific shop from localStorage or context
-    const fetchStylists = () => {
-      const storedShops = JSON.parse(localStorage.getItem("shops")) || [];
-      const currentShop = storedShops.find((shop) => shop.id === shopId);
-      if (currentShop && currentShop.stylists) {
-        setStylistList(currentShop.stylists);
-      }
-    };
-
-    fetchStylists();
-
-    // Poll every 5 seconds to check for updates in localStorage
-    const intervalId = setInterval(fetchStylists, 5000);
-
-    return () => clearInterval(intervalId); // Cleanup on component unmount
-  }, [shopId]); // Depend on shopId to fetch the correct shop's stylists
-
+    const storedStylists = localStorage.getItem('stylists');
+    if (storedStylists) {
+      setStylistList(JSON.parse(storedStylists));
+    }
+  }, []);
 
   const settings = {
     dots: true,
@@ -85,9 +72,8 @@ function StylistService({ onCardClick, shopId }) {  // Pass the shopId prop to g
         {stylistList.map((item) => (
           <div key={item.id} className="top-card-wrapper" onClick={() => handleCardClick(item)}>
             <CommonCard 
-              imageUrl={item.imageUrl}
-              name={item.name}
-              service={item.service}
+              name={item.name}          // Pass name
+              service={item.service}    // Pass service
             />
           </div>
         ))}

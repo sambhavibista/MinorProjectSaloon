@@ -3,7 +3,7 @@ import CommonCard from "./shop_section_card";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useShops } from "../../admin/Context/shopContext"; // Import the shop context
+import {useShops} from "../../admin/Context/shopContext"; // Import the shop context
 
 function ShopService({ onCardClick }) {
   const { shops } = useShops();  // Get the shops from the context

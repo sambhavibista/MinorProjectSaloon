@@ -2,14 +2,14 @@ import React from 'react';
 import { Card, CardActionArea, CardContent, CardMedia, Typography, Box } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-function CommonCard({ name, service, imageUrl }) {
+function CommonCard({ name, service }) {
   return (
     <div style={{ marginBottom: '1rem', display: "flex", alignItems: "center", justifyContent: "center" }}>
       <Card>
-        <CardActionArea>
+        {/* <CardActionArea> */}
           {/* Image Section */}
-          <div style={{ position: 'relative' }}>
-          <CardMedia
+          {/* <div style={{ position: 'relative' }}> */}
+          {/* <CardMedia
             component="img"
             image={imageUrl}
             alt={`${name} image`}
@@ -18,8 +18,8 @@ function CommonCard({ name, service, imageUrl }) {
               width: { xs: "270px", sm: "270px", md: "320px", lg: '380px' },
               objectFit: 'cover'
             }}
-          />
-          </div>
+          /> */}
+          {/* </div> */}
           {/* Card Content */}
           <CardContent>
             <Box sx={{ height: "auto", margin: '0px 1px' }}>
@@ -33,7 +33,7 @@ function CommonCard({ name, service, imageUrl }) {
               </Typography>
             </Box>
           </CardContent>
-        </CardActionArea>
+        {/* </CardActionArea> */}
       </Card>
     </div>
   );
